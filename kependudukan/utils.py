@@ -1,0 +1,10 @@
+STATUS_HUBUNGAN_DALAM_KELUARGA = (
+	(1,'KEPALA KELUARGA'),
+	(2,'ISTRI'),
+	(3,'ANAK')
+)
+
+KWARGANEGARAAN = (
+	(1,'WNI'),
+	(2,'WNA')
+	)

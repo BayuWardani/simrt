@@ -87,3 +87,8 @@ local_settings.py
 
 .env
 db.sqlite3
+accounts/migrations/00*
+kependudukan/migrations/00*
+master/migrations/00*
+stisla/migrations/00*
+sirt/migrations/00*
