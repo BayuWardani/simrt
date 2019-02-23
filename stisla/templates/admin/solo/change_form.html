@@ -3,14 +3,18 @@
 {% load admin_urls %}
 
 {% block breadcrumbs %}
-<div class="breadcrumbs">
-    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a> &rsaquo; 
+<!-- <div class="breadcrumbs"> -->
+    <!-- <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a> &rsaquo; 
     <a href="../">{{ opts.app_label|capfirst|escape }}</a> &rsaquo; 
-    {{ opts.verbose_name|capfirst }}
-</div>
+    {{ opts.verbose_name|capfirst }} -->
+    <div class="section-header-breadcrumb">
+    <div class="breadcrumb-item active"><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></div>
+    <div class="breadcrumb-item">{% if add %}{% blocktrans with name=opts.verbose_name %}Add {{ name }}{% endblocktrans %}{% else %}{{ original|truncatewords:"18" }}{% endif %}</div>
+  </div>
+<!-- </div> -->
 {% endblock %}
 
 {% block object-tools-items %}
-<li><a href="{% url opts|admin_urlname:'history' %}" class="historylink">{% trans "History" %}</a></li>
+<a href="{% url opts|admin_urlname:'history' %}" class="historylink btn btn-sm btn-primary float-right">{% trans "History" %}</a>
 {% if has_absolute_url %}<li><a href="{% url 'admin:view_on_site' content_type_id original.pk %}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif%}
 {% endblock %}

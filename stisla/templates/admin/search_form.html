@@ -1,0 +1,16 @@
+{% load i18n static %}
+{% if cl.search_fields %}
+<div id="toolbar "><form id="changelist-search" method="get">
+<div>
+
+ <div class="input-group mb-3">
+  <input type="text" size="40" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar" autofocus class="form-control" >
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+    	<img src="{% static "admin/img/search.svg" %}" alt="Search"></button>
+  </div>
+</div>
+
+</div>
+</form></div>
+{% endif %}

@@ -14,9 +14,9 @@ class WargaAdmin(admin.ModelAdmin):
 	list_filter = ('jenis_kelamin','agama',)
 	search_fields = ('username','nama_lengkap','tempat_lahir','kwarganegaraan','jenis_pekerjaan__nama_jenis_pekerjaan',)
 	form = FormWarga
-	inlines = [
-		RiwayatStatusHubunganInline
-	]
+	# inlines = [
+	# 	RiwayatStatusHubunganInline
+	# ]
 
 	def Nik(self,obj=None):
 		if obj.username:
@@ -32,9 +32,9 @@ class WargaSementaraAdmin(admin.ModelAdmin):
 	list_filter = ('jenis_kelamin','agama',)
 	search_fields = ('username','nama_lengkap','tempat_lahir','kwarganegaraan','jenis_pekerjaan__nama_jenis_pekerjaan',)
 	form = FormWargaSementara
-	inlines = [
-		RiwayatStatusHubunganInline
-	]
+	# inlines = [
+	# 	RiwayatStatusHubunganInline
+	# ]
 
 	def Nik(self,obj=None):
 		if obj.username:

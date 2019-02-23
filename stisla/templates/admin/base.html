@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+{% load static i18n %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>{% block title %}{{title}}{% endblock %}</title>
+  {% block extrastyle %}{% endblock %}
+  {% block extrahead %}{% endblock %}
+  {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css'%}">
+  <link rel="stylesheet" href="{% static 'node_modules/@fortawesome/fontawesome-free/css/all.min.css'%}">
+
+  <!-- CSS Libraries -->
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/components.css' %}">
+</head>
+
+<body class="layout-2">
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar">
+        <a href="{% url 'admin:index'%}" class="navbar-brand sidebar-gone-hide">SIRT</a>
+        <a href="{% url 'admin:index'%}" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
+        <div class="nav-collapse">
+          <a class="sidebar-gone-show nav-collapse-toggle nav-link" href="#">
+            <i class="fas fa-ellipsis-v"></i>
+          </a>
+          
+        </div>
+        <form class="form-inline ml-auto">
+          <ul class="navbar-nav">
+            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+          </ul>
+          <div class="search-element">
+            <input class="form-control" type="search" placeholder="Cari Warga" aria-label="Search" data-width="250">
+            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+            <div class="search-backdrop"></div>
+            
+          </div>
+        </form>
+        <ul class="navbar-nav navbar-right">
+          <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+            <img alt="image" src="{%static 'img/default.png'%}" class="rounded-circle mr-1">
+            <div class="d-sm-none d-lg-inline-block">Hi, {{request.user.get_full_name}}</div></a>
+            <div class="dropdown-menu dropdown-menu-right">
+              
+              <a href="{% url 'admin:logout'%}" class="dropdown-item has-icon text-danger">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div class="main-sidebar">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand sidebar-gone-show"><a href="{% url 'admin:index'%}">SIRT</a></div>
+            <ul class="sidebar-menu">
+            <li class="menu-header">List Menu</li>
+            <li><a class="nav-link" href="{% url 'admin:index'%}"><i class="fas fa-fire"></i> <span>Beranda</span></a></li>
+            <li><a class="nav-link" href="{% url 'admin:kependudukan_suratpengantar_add'%}"><i class="far fa-envelope"></i> <span>Tambah Surat Pengantar</span></a></li>
+            <li class="menu-header">Kependudukan</li>
+            <li><a class="nav-link" href="{% url 'admin:kependudukan_warga_changelist'%}"><i class="far fa-user"></i> <span>Warga</span></a></li>
+            <li><a class="nav-link" href="{% url 'admin:kependudukan_wargasementara_changelist'%}"><i class="far fa-address-card"></i> <span>Warga Sementara</span></a></li>
+            <li class="menu-header">Konfigurasi Sistem</li>
+            <li><a class="nav-link" href="{% url 'admin:master_konfigurasisistem_changelist'%}"><i class="fas fa-cogs"></i> <span>Setting</span></a></li>
+            
+          </ul>
+
+          
+        </aside>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>{% block app_title %}{% endblock %}</h1>
+            {% if not is_popup %}
+              {% block breadcrumbs %}
+              
+              {% endblock %}
+            {% endif %}
+          </div>
+          <div class="section-body">
+            {% block messages %}
+                {% if messages %}
+                <ul class="messagelist alert alert-warning" style="list-style-type: none;">{% for message in messages %}
+                  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+            {% endblock messages %}
+
+            {% block content %}
+            {% endblock %}
+          </div>
+        </section>
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+          Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+        </div>
+        <div class="footer-right">
+          
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'node_modules/popper.js/dist/umd/popper.min.js' %}"></script>
+  <script src="{% static 'node_modules/tooltip.js/dist/umd/tooltip.min.js' %}"></script>
+  <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'node_modules/nicescroll/dist/jquery.nicescroll.min.js' %}"></script>
+  <script src="{% static 'node_modules/moment/min/moment.min.js' %}"></script>
+  <script src="{% static 'assets/js/stisla.js' %}"></script>
+
+  <!-- JS Libraies -->
+  <script src="{% static 'node_modules/sticky-kit/dist/sticky-kit.min.js' %}"></script>
+
+  <!-- Page Specific JS File -->
+
+  <!-- Template JS File -->
+  <script src="{% static 'assets/js/scripts.js' %}"></script>
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+</body>
+</html>

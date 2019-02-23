@@ -64,7 +64,7 @@ class JenisStatusHubungan(models.Model):
 
 class Warga(Account):
 	# jenis_identitas = models.ForeignKey(JenisIdentitas,on_delete=models.CASCADE)
-	jenis_pekerjaan = models.ForeignKey(JenisPekerjaan,verbose_name='Jenis Pekerjaan',on_delete=models.CASCADE)
+	jenis_pekerjaan = models.ForeignKey(JenisPekerjaan,verbose_name='Jenis Pekerjaan',on_delete=models.CASCADE,blank=True,null=True)
 	kwarganegaraan = models.PositiveIntegerField(choices=KWARGANEGARAAN,default=1,blank=True,null=True)
 	nama_ayah = models.CharField(max_length=255,blank=True,null=True)
 	nama_ibu = models.CharField(max_length=255,blank=True,null=True)

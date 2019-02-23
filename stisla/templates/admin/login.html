@@ -1,0 +1,125 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>{% block title %}{{title}}{% endblock %}</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css'%}">
+  <link rel="stylesheet" href="{% static 'node_modules/@fortawesome/fontawesome-free/css/all.min.css'%}">
+
+  <!-- CSS Libraries -->
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/components.css' %}">
+
+  {% block extrastyle %}
+
+  <link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}">
+  {{ form.media }}
+  {% endblock %}
+</head>
+
+<body>
+  <div id="app">
+    <section class="section">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+            <div class="login-brand">
+              <!-- SIRT -->
+            </div>
+
+            <div class="card card-primary">
+              <div class="card-header"><h4>Login</h4></div>
+
+              <div class="card-body">
+
+                {% if user.is_authenticated %}
+                <div class="alert alert-info">
+                  <p class="errornote">
+                  {% blocktrans trimmed %}
+                      You are authenticated as {{ username }}, but are not authorized to
+                      access this page. Would you like to login to a different account?
+                  {% endblocktrans %}
+                  </p>
+                </div>
+                {% endif %}
+
+
+                {% if form.errors and not form.non_field_errors %}
+                  <p class="errornote">
+                  {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+                  </p>
+                {% endif %}
+                {% if form.non_field_errors %}
+                <div class="alert alert-warning">
+                  {% for error in form.non_field_errors %}
+                  <p class="errornote">
+                      {{ error }}
+                  </p>
+                  {% endfor %}
+                </div>
+                {% endif %}
+                <form method="POST" action="{{ app_path }}" class="needs-validation" novalidate="">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="email">Username</label>
+                    <input id="username" type="text" class="form-control" name="username" tabindex="1" required autofocus>
+                    <div class="invalid-feedback">
+                     {{ form.username.errors }}
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="d-block">
+                    	<label for="password" class="control-label">Password</label>
+                      
+                    </div>
+                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                    <div class="invalid-feedback">
+                      {{ form.password.errors }}
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                      Login
+                    </button>
+                  </div>
+                </form>
+                
+              </div>
+            </div>
+            
+            <div class="simple-footer">
+              Copyright SIRT &copy; BayuWrdani
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'node_modules/popper.js/dist/umd/popper.min.js' %}"></script>
+  <script src="{% static 'node_modules/tooltip.js/dist/umd/tooltip.min.js' %}"></script>
+  <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'node_modules/nicescroll/dist/jquery.nicescroll.min.js' %}"></script>
+  <script src="{% static 'node_modules/moment/min/moment.min.js' %}"></script>
+  <script src="{% static 'assets/js/stisla.js' %}"></script>
+
+  <!-- JS Libraies -->
+  <script src="{% static 'node_modules/sticky-kit/dist/sticky-kit.min.js' %}"></script>
+
+  <!-- Page Specific JS File -->
+
+  <!-- Template JS File -->
+  <script src="{% static 'assets/js/scripts.js' %}"></script>
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+</body>
+</html>
