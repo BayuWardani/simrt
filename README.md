@@ -1,7 +1,7 @@
 # SIMRT
 Sistem Informasi Management RT. sistem yang ditunjukan kepada semua ibu/bapak rt yang ingin semua data kependudukan maupun pelayanan tertata dengan rapi dalam bentuk sebuah sistem.
 
-![alt text](https://github.com/BayuWardani/simrt/blob/master/127.0.0.1_8000_kependudukan_warga_.png?raw=true)
+![alt text](https://github.com/BayuWardani/simrt/blob/master/127.0.0.1_8000_kependudukan_warga_%20(1).png?raw=true)
 
 ## FITUR
 <ul>
