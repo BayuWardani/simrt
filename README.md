@@ -20,7 +20,7 @@ Sistem Informasi Management RT. sistem yang ditunjukan kepada semua ibu/bapak rt
    </li>
   <li><strong>Accounts</strong>
     <ul>
-      <li>Admi</li>
+      <li>Admin</li>
     </ul>
    </li>
 </ul>
