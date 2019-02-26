@@ -47,4 +47,4 @@ Sistem Informasi Management RT. sistem yang ditunjukan kepada semua ibu/bapak rt
 ~ dan semua Python library yang saya gunakan.
 
 ### NOTE
-SIMRT ini masih belum selesai 100% karena masih ada beberapa tempalte dan fitur yang belum saya selesai
+SIMRT ini masih belum selesai 100% karena masih ada beberapa template dan fitur yang belum saya selesaikan.
