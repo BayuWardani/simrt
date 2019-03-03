@@ -105,3 +105,20 @@
 </div>
 </div>
 {% endblock %}
+
+
+{% block extrajs %}
+{{block.super}}
+<script type="text/javascript">
+
+
+  $(document).ready(function(){
+    $('select').select2({
+       theme: 'bootstrap4',
+    })
+    $('#id_tanggal').flatpickr()
+    $('#id_tanggal_datang').flatpickr()
+    $('#id_tanggal_lahir').flatpickr()
+  })
+</script>
+{% endblock %}

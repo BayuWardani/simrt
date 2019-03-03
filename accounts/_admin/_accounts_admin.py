@@ -11,4 +11,9 @@ class AccountAdmin(admin.ModelAdmin):
 	def save_model(self, request, obj, form, change):
 		if not change:
 			obj.created_by = request.user
-		return super(SuratPengantarAdmin,self).save_model(request,obj,form,change)
+		return super(AccountAdmin,self).save_model(request,obj,form,change)
+
+	def get_queryset(self,request):
+		qs = super(AccountAdmin,self).get_queryset(request)
+		qs = qs.filter(warga__isnull=True)
+		return qs

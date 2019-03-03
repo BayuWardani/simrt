@@ -20,6 +20,6 @@ def debug(params):
 
 @register.filter(name='field_add_attr')
 def field_add_attr(params):
-	params.field.widget.attrs.update({'class': 'form-control'})
+	params.field.widget.attrs.update({'class': 'form-control form-control-sm'})
 
 	return params

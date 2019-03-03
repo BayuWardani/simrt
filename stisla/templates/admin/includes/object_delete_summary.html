@@ -1,0 +1,20 @@
+{% load i18n %}
+<h2></h2>
+
+
+<div class="card" style="box-shadow: none;">
+ 
+  <div class="card-body">
+ 	<h5>{% trans "Summary" %}</h5>   
+    <!-- <ul> -->
+	    {% for model_name, object_count in model_count %}
+	    <!-- <li class="card-text"> -->
+	    	<button type="button" class="btn btn-primary btn-sm">
+			  {{ model_name|capfirst }} <span class="badge badge-danger">{{ object_count }}</span>
+			  <!-- <span class="sr-only">unread messages</span> -->
+			</button>
+	    <!-- : </li> -->
+	    {% endfor %}
+	<!-- </ul> -->
+  </div>
+</div>

@@ -1,7 +1,7 @@
 JENIS_KELAMIN = (
-	('L','Laki Laki'),
+	('L','Laki - Laki'),
 	('P','Permpuan'),
-	('N','Not Define')
+	# ('N','Not Define')
 	)
 
 AGAMA = (

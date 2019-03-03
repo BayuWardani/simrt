@@ -81,8 +81,20 @@ class Warga(Account):
 class WargaSementara(Warga):
 	asal_daerah = models.CharField(max_length=255,help_text="Isi Nama Kota/Kabupaten asal")
 	asal_alamat = models.TextField()
-	tanggal_datang = models.DateTimeField()
-	tanggal_keluar = models.DateTimeField(blank=True,null=True)
+	tanggal_datang = models.DateField()
+	tanggal_keluar = models.DateField(blank=True,null=True)
+
+	def lama_tinggal(self,mode='hari'):
+		tanggal_datang = self.tanggal_datang
+		if self.tanggal_keluar:
+			tanggal_keluar = self.tanggal_keluar
+		else:
+			tanggal_keluar = datetime.now().date()
+
+		total = (tanggal_keluar - tanggal_datang)
+		if mode == 'hari':
+			return "{} Hari".format(total.days)
+		return str(total)
 
 	class Meta:
 		verbose_name = "Warga Sementara"
@@ -116,16 +128,22 @@ class NomorIdentitas(models.Model):
 		verbose_name = "Nomor Identitas"
 		verbose_name_plural = "Nomor Identitas"
 
+def user_directory_path(instance, filename):
+	return "berkas/surat_pengantar/%Y/%m/%d/{}_%d%m%d%H%i.pdf".format(str(instance.warga))
 
 class SuratPengantar(models.Model):
+	nomor_surat = models.CharField(max_length=255,blank=True,null=True)
 	warga = models.ForeignKey(Warga,on_delete=models.CASCADE)
 	keperluan = models.TextField()
 	tanggal = models.DateField()
+	file_cetak = models.FileField(upload_to=user_directory_path,blank=True,null=True)
+	body_cetak = models.TextField(blank=True,null=True)
 	created_at = models.DateTimeField()
 	updated_at = models.DateTimeField()
 	created_by = models.ForeignKey(settings.AUTH_USER_MODEL,blank=True,null=True,on_delete=models.CASCADE,related_name="surat_pengantar_dibuat_oleh")
 
-
+	def __str__(self):
+		return "Surat Pengantar {}".format(self.warga)
 
 	def save(self,*args,**kwargs):
 		if not self.id:

@@ -93,14 +93,20 @@
      
     </div> -->
   </div>
-  <div id="content-main">
-    
-    
-    <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
-      
-      
+  
+{% endblock %}
 
-     
-    </div>
-  </div>
+{% block extrajs %}
+{{block.super}}
+<script type="text/javascript">
+  
+  const CommandRedirect = async(ini) => {
+    var elm = $(ini)
+    var url = elm.data('url')
+    // elm.html("<i class='fa fa-spin fa-spinner'></i>").attr('disabled','disabled')
+    window.open(url,'_blank',false)
+    // elem.html("<i class='fa fa-print'></i> Cetak").removeAttr('disabled')
+  }
+
+</script>
 {% endblock %}

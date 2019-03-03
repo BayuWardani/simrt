@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static i18n%}
+<head>
+  <meta charset="utf-8">
+  <title>{{title}}</title>
+
+  <!-- Normalize or reset CSS with your favorite library -->
+  <link rel="stylesheet" href="{% static 'lib/normalize/normalize.min.css'%}">
+
+  <!-- Load paper.css for happy printing -->
+  <link rel="stylesheet" href="{% static 'lib/paper/paper.css'%}">
+
+  <!-- Set page size here: A5, A4 or A3 -->
+  <!-- Set also "landscape" if you need -->
+  <style>
+    body{
+      font-family: arial;
+    }
+    @page { 
+      size: A4; 
+    }
+
+    h1,h2,h3,h4,h5{
+      line-height: 0.1in;
+    }
+
+    .line{
+      min-height: 10px;
+      border-top: 3px dashed #000;
+    }
+    .body_surat{
+      text-align: justify;
+      line-height: 0.3in;
+    }
+    .table{
+      width: 100%;
+      padding: 30px;
+    }
+
+    .ttd{
+      height: 70px !important;
+    }
+
+    .no-padding{
+      padding: 0px !important;
+    }
+
+    .float-right{
+      text-align:  right;
+    }
+    .mt-5{
+      margin-top: 40px !important;
+    }
+
+    .mb-5{
+      margin-bottom: 50px !important;
+    }
+    .footer{
+      /*position: absolute;*/
+      /*bottom: 10px;*/
+      /*top: 0;*/
+      margin-top: 100px;
+    }
+
+  </style>
+</head>
+
+<!-- Set "A5", "A4" or "A3" for class name -->
+<!-- Set also "landscape" if you need -->
+<body class="A4">
+
+  <!-- Each sheet element should have the class "sheet" -->
+  <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25 -->
+  <section class="sheet padding-10mm">
+
+    <!-- Write HTML just like a web page -->
+    <article>
+      <div class="kop_surat">
+        <center>
+          <h2>RUKUN TETANGGA {{sistem.rt}}/{{sistem.rw}} DUSUN {{sistem.dusun|upper}}</h2>
+          <h3>DESA {{sistem.desa|upper}}, KECAMATAN {{sistem.kecamatan|upper}}</h3>
+          <h4>KABUPATEN {{sistem.kabupaten|upper}} - {{sistem.kode_pos}}</h4>
+        </center>
+      </div>
+      <div class="line"></div>
+      <div class="title_surat">
+        <center>
+          <h2><u>SURAT PENGANTAR</u></h2>
+          <h5>NO. <u>{{pengantar.nomor_surat}}</u> /INT/IV/{% now 'Y'%}</h5>
+        </center>
+
+      </div>
+      <div class="body_surat">
+        <p>Yang bertanda tanggan  di bawah ini Ketua RT/RW {{sistem.rt}}/{{sistem.rw}} Dusun {{sistem.dusun|title}} Desa {{sistem.desa|title}} Kecamatan {{sistem.kecamatan|title}} Kabupaten {{sistem.kabupaten|title}}, Menerangkan Bahwa :</p>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>1.</td>
+              <td width="40%">Nama Lengkap</td>
+              <td>:</td>
+              <td><strong>{{pengantar.warga.get_full_name|upper}}</strong></td>
+            </tr>
+            <tr>
+              <td>2.</td>
+              <td width="40%">Tempat, Tanggal Lahir</td>
+              <td>:</td>
+              <td><strong>{{pengantar.warga.ttl|upper}}</strong></td>
+            </tr>
+            <tr>
+              <td>3.</td>
+              <td width="40%">Jenis Kelamin</td>
+              <td>:</td>
+              <td><strong>{{pengantar.warga.get_jenis_kelamin|upper}}</strong></td>
+            </tr>
+            <tr>
+              <td>4.</td>
+              <td width="40%">Agama</td>
+              <td>:</td>
+              <td><strong>{{pengantar.warga.get_agama|upper}}</strong></td>
+            </tr>
+            <tr>
+              <td>5.</td>
+              <td width="40%">Alamat</td>
+              <td>:</td>
+              <td><strong>{{pengantar.warga.alamat|upper}}</strong></td>
+            </tr>
+            <tr>
+              <td>6.</td>
+              <td width="40%">Keperluan</td>
+              <td>:</td>
+              <td><strong>{{pengantar.keperluan|safe|upper}}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="footer_surat">
+        <p>Demikian Surat Keterangan ini dibuat untuk dapat dipergunakan  sesuai dengan  keperluanya,</p>
+      </div>
+       <div class="ttd_surat mt-5">
+        <table class="table no-padding">
+          <tbody>
+            <tr>
+              <td colspan="2" style="margin-bottom: ">{{sistem.kabupaten}}, {{pengantar.tanggal|date:'d F Y'}}
+                <br>
+                <br>
+              </td>
+            </tr>
+            <tr>
+              <td>Pemohon,</td>
+              <td class="float-right">Ketua RT {{sistem.rt}}</td>
+            </tr>
+            <tr>
+              <td class="ttd"></td>
+               <td class="ttd"></td>
+            </tr>
+            <tr>
+              <td>{{pengantar.warga.nama_lengkap}}</td>
+              <td class="float-right">{{sistem.ketua_rt.nama_lengkap}}</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <center>Ketua RW {{sistem.rw}}</center>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="ttd"></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <center>
+                  {{sistem.ketua_rw.nama_lengkap}}
+                </center>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="footer">
+        <!-- <center>
+          <span style="color:gray;font-size: small;">Surat Pengantar dicetak pada tanggal {% now 'd F Y H:i '%}</span>  
+        </center> -->
+        
+      </div>
+    </article>
+
+  </section>
+
+</body>
+
+</html>
