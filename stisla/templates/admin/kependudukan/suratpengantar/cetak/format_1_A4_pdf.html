@@ -87,7 +87,7 @@
       <div class="title_surat">
         <center>
           <h2><u>SURAT PENGANTAR</u></h2>
-          <h5>NO. <u>{{pengantar.nomor_surat}}</u> /INT/IV/{% now 'Y'%}</h5>
+          <h5>NO. <u>{{pengantar.nomor_surat}}</u> /RT/{{sistem.rt}}/RW/{{sistem.rw}}/{% now 'Y'%}</h5>
         </center>
 
       </div>
@@ -105,7 +105,7 @@
               <td>2.</td>
               <td width="40%">Tempat, Tanggal Lahir</td>
               <td>:</td>
-              <td><strong>{{pengantar.warga.ttl|upper}}</strong></td>
+              <td><strong>{% trans pengantar.warga.ttl|upper %}</strong></td>
             </tr>
             <tr>
               <td>3.</td>
@@ -141,7 +141,7 @@
         <table class="table no-padding">
           <tbody>
             <tr>
-              <td colspan="2" style="margin-bottom: ">{{sistem.kabupaten}}, {{pengantar.tanggal|date:'d F Y'}}
+              <td colspan="2" style="margin-bottom: ">{{sistem.kabupaten}}, {% trans tanggal_pengantar %}
                 <br>
                 <br>
               </td>

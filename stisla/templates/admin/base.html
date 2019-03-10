@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>{% block title %}{{title}}{% endblock %}</title>
-  {% block extrastyle %}{% endblock %}
+  
   {% block extrahead %}{% endblock %}
   {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
   <!-- General CSS Files -->
@@ -25,6 +25,18 @@
   <link rel="stylesheet" type="text/css" href="{% static 'lib/select2/select2-bootstrap4.css'%}">
   <link rel="stylesheet" type="text/css" href="{% static 'lib/flatpickr/flatpickr.min.css'%}">
 
+
+  {% block extrastyle %}{% endblock %}
+  <style type="text/css">
+    body{
+      background-color: #ECEFF1 !important;
+    }
+
+    .besar{
+      font-size: 3rem !important;
+    }
+  </style>
+
 </head>
 
 <body class="layout-2">
@@ -32,7 +44,7 @@
     <div class="main-wrapper">
       <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
-        <a href="{% url 'admin:index'%}" class="navbar-brand sidebar-gone-hide">SIRT</a>
+        <a href="{% url 'admin:index'%}" class="navbar-brand sidebar-gone-hide">SIMRT</a>
         <a href="{% url 'admin:index'%}" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
         
         <form class="form-inline ml-auto" method="GET"  action="{% url 'admin:kependudukan_warga_changelist'%}">

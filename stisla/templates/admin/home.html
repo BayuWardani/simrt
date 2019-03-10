@@ -1,0 +1,93 @@
+{% extends 'admin/base_site.html' %}
+
+{% load static i18n %}
+
+{% block breadcrumbs %}
+<div class="section-header-breadcrumb">
+  <div class="breadcrumb-item active"><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></div>
+  <div class="breadcrumb-item">Beranda</div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+	<div class="col-md-12 col-12">
+		<div class="card">
+			<div class="card-header">
+			  <h4>Kependudukan</h4>
+			</div>
+			<div class="card-body">
+			  <div class="row">
+			    <div class="col text-center">
+			      <i class="besar fas fa-address-card"></i>
+			      <div class="mt-2 font-weight-bold">Warga</div>
+			      <div class="text-muted text-small"><span class="text-primary"></span> {{jumlah_warga}}</div>
+			    </div>
+			    <div class="col text-center">
+			      <div class="besar fas fa-id-card-alt"></div>
+			      <div class="mt-2 font-weight-bold">Warga Sementara</div>
+			      <div class="text-muted text-small"><span class="text-primary"></span> {{jumlah_wargasementara}}</div>
+			    </div>
+			    <div class="col text-center">
+			      <div class="besar fas fa-male"></div>
+			      <div class="mt-2 font-weight-bold">Laki-Laki</div>
+			      <div class="text-muted text-small">{{jumlah_perempuan}}</div>
+			    </div>
+			    <div class="col text-center">
+			      <div class="besar fas fa-female"></div>
+			      <div class="mt-2 font-weight-bold">Perempuan</div>
+			      <div class="text-muted text-small">{{jumlah_laki_laki}}</div>
+			    </div>
+			    
+			  </div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12 col-12">
+		<div class="card">
+			<div class="card-header">
+			  <h4>Statistik Permintaan Surat Pengantar</h4>
+			</div>
+			<div class="card-body">
+			  <div class="row">
+			    <canvas id="myChart" width="400" height="100"></canvas>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+
+<script type="text/javascript" src="{% static 'lib/chartjs/Chart.js'%}"></script>
+<script type="text/javascript">
+
+	var data = {
+				labels: [{% for x,y in month_lst %}'{{y}}',{% endfor %}],
+				datasets: [{
+					label: 'Surat Pengantar',
+					backgroundColor: 'red',
+					borderColor: 'red',
+					data: [
+						{% for data in statistik_data%} {{data}}, {% endfor %} 
+					],
+					fill: true,
+				}]
+			}
+
+	var ctx = document.getElementById("myChart").getContext("2d");
+	var myLineChart = new Chart(ctx, {
+	    type: 'line',
+	    data: data,
+	    options:  {
+	        scales: {
+	            yAxes: [{
+	                stacked: true
+	            }]
+	        }
+	    }
+	});
+</script>
+{% endblock %}

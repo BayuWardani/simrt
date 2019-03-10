@@ -44,7 +44,7 @@ class WargaAdmin(admin.ModelAdmin):
 
 	def get_queryset(self,request):
 		qs = super(WargaAdmin,self).get_queryset(request)
-		qs = qs.filter(wargasementara__isnull=False)
+		qs = qs.filter(wargasementara__isnull=True)
 		return qs
 
 
@@ -87,6 +87,7 @@ class SuratPengantarAdmin(admin.ModelAdmin):
 
 	def cetak_pdf(self,request,object_id):
 		pengantar = None
+		tanggal_pengantar = None
 		sistem = KonfigurasiSistem.get_solo()
 		try:
 			pengantar = SuratPengantar.objects.get(pk=object_id)
@@ -97,7 +98,11 @@ class SuratPengantarAdmin(admin.ModelAdmin):
 			print (e)
 			raise Http404()
 		
+		if pengantar:
+			tanggal_pengantar = pengantar.tanggal.strftime('%d %B %Y')
+
 		context = {
+			"tanggal_pengantar":tanggal_pengantar,
 			"pengantar":pengantar,
 			"title":"{} ~ {}".format(pengantar.warga,pengantar.keperluan),
 			'sistem':sistem

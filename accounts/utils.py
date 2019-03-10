@@ -1,6 +1,6 @@
 JENIS_KELAMIN = (
 	('L','Laki - Laki'),
-	('P','Permpuan'),
+	('P','Perempuan'),
 	# ('N','Not Define')
 	)
 

@@ -28,11 +28,13 @@ class Account(AbstractUser):
 
 	def get_usia(self):
 		hari_ini = date.today()
-		usia = (hari_ini - self.tanggal_lahir) / 360
-		# print(dir(usia.days))
-		usia_berjalan = usia/usia.days
-		# print(usia_berjalan)
-		usi_ = "{} th {} bulan".format(usia.days,usia_berjalan.days)
+		usi_ = ' -'
+		if self.tanggal_lahir:
+			usia = (hari_ini - self.tanggal_lahir) / 360
+			# print(dir(usia.days))
+			# usia_berjalan = usia/usia.days
+			# print(usia_berjalan)
+			usi_ = "{} th".format(usia.days)
 		return str(usi_)
 
 	def ttl(self):
