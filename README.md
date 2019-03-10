@@ -35,7 +35,7 @@ Sistem Informasi Management RT. sistem yang ditunjukan kepada semua ibu/bapak rt
 6. ketik ``./simrt/bin/active`` 
 7. arahkan ke folder home ```cd ~/```
 8. clone project simrt ``git clone https://github.com/BayuWardani/simrt.git``
-9. masuk ke project simrt ``` cd simrt && pip3 install -r requirments.txt```
+9. masuk ke project simrt ``` cd simrt && pip install -r requirments.txt```
 10. migrate database simrt tapi sebelumnya sudah dibuatkan database dan install postgresql, untuk cara instalasi postgresql dan  cara buat databasenya bisa ke sini [How To Use PostgreSQL with your Django Application on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-django-application-on-ubuntu-14-04) ``python manage.py makemigrations && python manage.py migrate ``
 11. lalu jalankan perintah `` python manage.py runserver``
 12. Jika ingin menjalankan ke dalam sebuah server bisa mengikuti langkah2 deploy django link tutorial [How To Deploy a Local Django App to a VPS](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-local-django-app-to-a-vps)
