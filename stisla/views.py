@@ -64,4 +64,4 @@ class Home(TemplateView):
 		# "jumlah_laki_laki_sementara":jumlah_laki_laki_sementara
 	}
 
-	print (extra_context)
+	# print (extra_context)
