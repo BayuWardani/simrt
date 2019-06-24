@@ -15,6 +15,7 @@ from datetime import datetime
 # library
 from weasyprint import HTML
 
+IS_POPUP_VAR = '_popup'
 
 def Warga_Sementara_Keluar(modeladmin,request,queryset):
 	queryset.update(tanggal_keluar=datetime.today())
@@ -85,6 +86,9 @@ class SuratPengantarAdmin(admin.ModelAdmin):
 
 		return mark_safe(btn)
 
+	def response_post_save_add(self, request, obj):
+		return HttpResponseRedirect(reverse("admin:kependudukan_suratpengantar_cetak_pdf",args=[obj.id]))
+
 	def cetak_pdf(self,request,object_id):
 		pengantar = None
 		tanggal_pengantar = None
@@ -102,7 +106,7 @@ class SuratPengantarAdmin(admin.ModelAdmin):
 			tanggal_pengantar = pengantar.tanggal.strftime('%d %B %Y')
 
 		context = {
-			"tanggal_pengantar":tanggal_pengantar,
+			# "tanggal_pengantar":pengantar.tanggal,
 			"pengantar":pengantar,
 			"title":"{} ~ {}".format(pengantar.warga,pengantar.keperluan),
 			'sistem':sistem
@@ -123,7 +127,8 @@ class SuratPengantarAdmin(admin.ModelAdmin):
 		# print(dir(response))
 		# pengantar.body_cetak = response.content
 		# pengantar.save()
-		return response
+		# return response
+		return render(request,template_name,context)
 
 	# def download_pdf(self,request,object_id):
 

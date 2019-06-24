@@ -35,11 +35,11 @@
     }
     .table{
       width: 100%;
-      padding: 30px;
+      /*padding: 30px;*/
     }
 
     .ttd{
-      height: 70px !important;
+      height: 50px !important;
     }
 
     .no-padding{
@@ -62,7 +62,15 @@
       /*top: 0;*/
       margin-top: 100px;
     }
-
+    /*table.fixed { table-layout:fixed; }*/
+    /*table.fixed td { overflow: hidden; }*/
+    td{width:1px;white-space:pre-wrap;}
+    table tbody {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        min-height: 90px;
+        max-height: 300px;
+    }
   </style>
 </head>
 
@@ -97,39 +105,39 @@
           <tbody>
             <tr>
               <td>1.</td>
-              <td width="40%">Nama Lengkap</td>
+              <td width="20%">Nama Lengkap</td>
               <td>:</td>
               <td><strong>{{pengantar.warga.get_full_name|upper}}</strong></td>
             </tr>
             <tr>
               <td>2.</td>
-              <td width="40%">Tempat, Tgl Lahir</td>
+              <td width="20%">Tempat, Tgl Lahir</td>
               <td>:</td>
               <td><strong>{% trans pengantar.warga.ttl|upper %}</strong></td>
             </tr>
             <tr>
               <td>3.</td>
-              <td width="40%">Jenis Kelamin</td>
+              <td width="20%">Jenis Kelamin</td>
               <td>:</td>
               <td><strong>{{pengantar.warga.get_jenis_kelamin|upper}}</strong></td>
             </tr>
             <tr>
               <td>4.</td>
-              <td width="40%">Agama</td>
+              <td width="20%">Agama</td>
               <td>:</td>
               <td><strong>{{pengantar.warga.get_agama|upper}}</strong></td>
             </tr>
             <tr>
               <td>5.</td>
-              <td width="40%">Alamat</td>
+              <td width="20%">Alamat</td>
               <td>:</td>
               <td><strong>{{pengantar.warga.alamat|upper}}</strong></td>
             </tr>
             <tr>
-              <td>6.</td>
-              <td width="40%">Keperluan</td>
-              <td>:</td>
-              <td><strong>{{pengantar.keperluan|safe|upper}}</strong></td>
+              <td width="10px">6.</td>
+              <td width="20px">Keperluan</td>
+              <td width="10px">:</td>
+              <td width="100px"><strong>{{pengantar.keperluan|safe|upper}}</strong></td>
             </tr>
           </tbody>
         </table>
@@ -141,13 +149,11 @@
         <table class="table no-padding">
           <tbody>
             <tr>
-              <td colspan="2" style="margin-bottom: ">{{sistem.kabupaten}}, {% trans tanggal_pengantar %}
-                <br>
-                <br>
+              <td colspan="2" style="margin-bottom: ">{{sistem.kabupaten}}, {{pengantar.tanggal}}
               </td>
             </tr>
             <tr>
-              <td>Pemohon,</td>
+              <td>Pemohon</td>
               <td class="float-right">Ketua RT {{sistem.rt}}</td>
             </tr>
             <tr>
@@ -161,6 +167,10 @@
             <tr>
               <td colspan="2">
                 <center>Ketua RW {{sistem.rw}}</center>
+                <br>
+                <br>
+                <center>{{sistem.ketua_rw.nama_lengkap}}
+                </center>
               </td>
             </tr>
             <tr>
@@ -168,9 +178,7 @@
             </tr>
             <tr>
               <td colspan="2">
-                <center>
-                  {{sistem.ketua_rw.nama_lengkap}}
-                </center>
+                
               </td>
             </tr>
           </tbody>
@@ -185,7 +193,10 @@
     </article>
 
   </section>
-
+  <script type="text/javascript">
+    // window.print()
+    // window.close()
+  </script>
 </body>
 
 </html>
